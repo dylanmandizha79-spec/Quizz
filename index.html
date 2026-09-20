@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Career Match Quiz</title>
+
+<meta name="description"
+content="Take this quick quiz to discover which type of digital opportunity may match your interests.">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f7fb;
+    color:#172033;
+    line-height:1.6;
+}
+
+.header{
+    background:#0757d9;
+    color:white;
+    padding:18px 20px;
+    text-align:center;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+}
+
+.logo span{
+    color:#ffd21f;
+}
+
+.container{
+    width:100%;
+    max-width:760px;
+    margin:auto;
+    padding:20px 15px 50px;
+}
+
+.hero{
+    background:white;
+    border-radius:18px;
+    padding:30px 22px;
+    margin-top:18px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+
+.hero h1{
+    font-size:30px;
+    line-height:1.2;
+    margin-bottom:12px;
+}
+
+.hero h1 span{
+    color:#0757d9;
+}
+
+.hero p{
+    color:#657084;
+    margin-bottom:20px;
+}
+
+.start-btn{
+    border:none;
+    background:#ffd21f;
+    color:#172033;
+    padding:15px 28px;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.ad-container{
+    background:white;
+    border:1px dashed #c7ced9;
+    border-radius:12px;
+    padding:12px;
+    margin:18px 0;
+    text-align:center;
+    min-height:90px;
+}
+
+.ad-label{
+    font-size:10px;
+    color:#8b94a3;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+/* QUIZ */
+
+.quiz{
+    display:none;
+}
+
+.quiz-card{
+    background:white;
+    border-radius:18px;
+    padding:25px 20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    color:#667085;
+    margin-bottom:8px;
+}
+
+.progress{
+    width:100%;
+    height:8px;
+    background:#e5eaf1;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.progress-bar{
+    width:20%;
+    height:100%;
+    background:#0757d9;
+    transition:.3s;
+}
+
+.question{
+    font-size:23px;
+    line-height:1.3;
+    margin-bottom:8px;
+}
+
+.question-description{
+    color:#687386;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.option{
+    width:100%;
+    padding:16px;
+    margin-bottom:10px;
+    background:#fff;
+    border:2px solid #e1e6ee;
+    border-radius:12px;
+    text-align:left;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#0757d9;
+    background:#f5f9ff;
+}
+
+.option:active{
+    transform:scale(.99);
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+    background:white;
+    border-radius:18px;
+    padding:30px 22px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+
+.result-icon{
+    width:70px;
+    height:70px;
+    background:#fff4b8;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 15px;
+    font-size:32px;
+}
+
+.result h2{
+    font-size:26px;
+    margin-bottom:12px;
+}
+
+.result p{
+    color:#657084;
+    margin-bottom:20px;
+}
+
+.cta{
+    display:block;
+    width:100%;
+    padding:17px;
+    background:#0757d9;
+    color:white;
+    text-decoration:none;
+    border-radius:11px;
+    font-weight:bold;
+    font-size:17px;
+}
+
+.cta:hover{
+    background:#0649b5;
+}
+
+.disclaimer{
+    font-size:11px;
+    color:#858e9d;
+    margin-top:14px;
+}
+
+.footer{
+    text-align:center;
+    font-size:12px;
+    color:#7b8492;
+    padding:25px 10px;
+}
+
+@media(max-width:500px){
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .question{
+        font-size:21px;
+    }
+
+    .container{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        Career<span>Match</span>
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- INTRODUCTION -->
+
+<section class="hero" id="intro">
+
+    <h1>
+        Which <span>Digital Opportunity</span>
+        Could Match You?
+    </h1>
+
+    <p>
+        Answer 5 quick questions and explore an opportunity
+        based on your answers.
+    </p>
+
+    <button class="start-btn" onclick="startQuiz()">
+        Start Quiz →
+    </button>
+
+</section>
+
+
+<!-- ADS -->
+
+<div class="ad-container">
+
+    <div class="ad-label">
+        ADVERTISEMENT
+    </div>
+
+    <!--
+    ================================
+    ADD YOUR AD CASH CODE HERE
+    ================================
+    -->
+
+</div>
+
+
+<!-- QUIZ -->
+
+<section class="quiz" id="quiz">
+
+    <div class="quiz-card">
+
+        <div class="progress-info">
+
+            <span id="questionNumber">
+                Question 1 of 5
+            </span>
+
+            <span id="percentage">
+                20%
+            </span>
+
+        </div>
+
+        <div class="progress">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+
+        <h2
+            class="question"
+            id="question">
+        </h2>
+
+        <p
+            class="question-description"
+            id="questionDescription">
+        </p>
+
+
+        <div id="options"></div>
+
+    </div>
+
+
+    <!-- AD BETWEEN QUESTIONS -->
+
+    <div class="ad-container">
+
+        <div class="ad-label">
+            ADVERTISEMENT
+        </div>
+
+        <!--
+        ================================
+        ADD YOUR AD CASH CODE HERE
+        ================================
+        -->
+
+    </div>
+
+</section>
+
+
+<!-- RESULT -->
+
+<section class="result" id="result">
+
+    <div class="result-icon">
+        ✓
+    </div>
+
+    <h2>
+        Your Result Is Ready
+    </h2>
+
+    <p>
+        Based on your answers, you may be interested
+        in exploring flexible digital opportunities.
+    </p>
+
+    <p>
+        Check the opportunity below to see whether
+        you meet its requirements.
+    </p>
+
+
+    <!--
+    ==========================================
+    REPLACE #CPA-OFFER WITH YOUR CPA OFFER URL
+    ==========================================
+    -->
+
+    <a
+        href="#CPA-OFFER"
+        class="cta"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        See Available Opportunity →
+
+    </a>
+
+
+    <p class="disclaimer">
+
+        Please review the offer's eligibility requirements
+        and terms before continuing.
+
+    </p>
+
+</section>
+
+
+</main>
+
+
+<footer class="footer">
+
+    © 2026 CareerMatch · Privacy · Terms
+
+</footer>
+
+
+
+<script>
+
+/* =========================================
+   QUIZ QUESTIONS
+========================================= */
+
+const questions = [
+
+    {
+        question:
+        "What type of work interests you most?",
+
+        description:
+        "Choose the option that best describes you.",
+
+        options: [
+
+            "Remote work",
+
+            "Online business",
+
+            "Creative work",
+
+            "Technology"
+
+        ]
+
+    },
+
+
+    {
+        question:
+        "How much time could you dedicate each day?",
+
+        description:
+        "Choose the amount of time that is closest to your situation.",
+
+        options: [
+
+            "Less than 1 hour",
+
+            "1–2 hours",
+
+            "2–4 hours",
+
+            "More than 4 hours"
+
+        ]
+
+    },
+
+
+    {
+        question:
+        "Which skill would you most like to develop?",
+
+        description:
+        "Choose the skill you would most like to improve.",
+
+        options: [
+
+            "Marketing",
+
+            "Writing",
+
+            "Sales",
+
+            "Technology"
+
+        ]
+
+    },
+
+
+    {
+        question:
+        "What matters most to you?",
+
+        description:
+        "Choose the factor that is most important to you.",
+
+        options: [
+
+            "Flexibility",
+
+            "Learning",
+
+            "Extra income",
+
+            "Career growth"
+
+        ]
+
+    },
+
+
+    {
+        question:
+        "Which best describes your experience?",
+
+        description:
+        "Choose the option closest to your current experience.",
+
+        options: [
+
+            "Complete beginner",
+
+            "Some experience",
+
+            "Intermediate",
+
+            "Advanced"
+
+        ]
+
+    }
+
+];
+
+
+/* =========================================
+   QUIZ VARIABLES
+========================================= */
+
+let currentQuestion = 0;
+
+let answers = [];
+
+
+/* =========================================
+   START QUIZ
+========================================= */
+
+function startQuiz(){
+
+    document.getElementById("intro").style.display = "none";
+
+    document.getElementById("quiz").style.display = "block";
+
+    currentQuestion = 0;
+
+    showQuestion();
+
+}
+
+
+/* =========================================
+   SHOW QUESTION
+========================================= */
+
+function showQuestion(){
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("question").textContent =
+        q.question;
+
+    document.getElementById("questionDescription").textContent =
+        q.description;
+
+
+    document.getElementById("questionNumber").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    const percent =
+        Math.round(
+            ((currentQuestion + 1) /
+            questions.length) * 100
+        );
+
+
+    document.getElementById("percentage").textContent =
+        percent + "%";
+
+
+    document.getElementById("progressBar").style.width =
+        percent + "%";
+
+
+    const optionsContainer =
+        document.getElementById("options");
+
+
+    optionsContainer.innerHTML = "";
+
+
+    q.options.forEach(function(option){
+
+        const button =
+            document.createElement("button");
+
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        button.type = "button";
+
+
+        button.onclick = function(){
+
+            selectAnswer(option);
+
+        };
+
+
+        optionsContainer.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================================
+   SELECT ANSWER
+========================================= */
+
+function selectAnswer(answer){
+
+    answers.push(answer);
+
+
+    if(currentQuestion <
+       questions.length - 1){
+
+        currentQuestion++;
+
+        showQuestion();
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+    else{
+
+        finishQuiz();
+
+    }
+
+}
+
+
+/* =========================================
+   FINISH QUIZ
+========================================= */
+
+function finishQuiz(){
+
+    document.getElementById("quiz").style.display =
+        "none";
+
+
+    document.getElementById("result").style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+</script>
+
+
+</body>
+  </html>
